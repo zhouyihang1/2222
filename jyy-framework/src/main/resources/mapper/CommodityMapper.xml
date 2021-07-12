@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.jinyiyun.framework.mapper.CommodityMapper">
+
+    <resultMap id="BaseResultMap" type="Commodity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="accountTitle" column="account_title" jdbcType="VARCHAR"/>
+            <result property="localService" column="local_service" jdbcType="VARCHAR"/>
+            <result property="surefireLevel" column="surefire_level" jdbcType="VARCHAR"/>
+            <result property="fightingCapacity" column="fighting_capacity" jdbcType="VARCHAR"/>
+            <result property="professional" column="professional" jdbcType="VARCHAR"/>
+            <result property="equipProperties" column="equip_properties" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="wx" column="wx" jdbcType="VARCHAR"/>
+            <result property="note" column="note" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="clickTime" column="click_time" jdbcType="INTEGER"/>
+            <collection property="imgs" ofType="Img">
+                <id property="iid" column="iid"/>
+                <result property="commTitle" column="comm_title"/>
+                <result property="commImgUrl" column="comm_img_url"/>
+            </collection>
+    </resultMap>
+
+
+    <update id="updateClickTime">
+        update commodity set click_time=click_time+1 where id=#{id}
+    </update>
+
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select * from commodity c,img i
+        <where>
+            i.comm_title=c.account_title
+            <if test="low != null and up != null" >
+                and price between #{low} and #{up}
+            </if>
+            <if test="professional != null">
+                and professional=#{professional}
+            </if>
+        </where>
+        <choose>
+            <when test="info == 1">
+                order by price desc
+            </when>
+            <when test="info == 2">
+                order by price asc
+            </when>
+            <when test="info == 3">
+                order by created_at desc
+            </when>
+        </choose>
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select * from commodity c,img i where i.comm_title=c.account_title
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select * from commodity c,img i where i.comm_title=c.account_title and c.id=#{id}
+    </select>
+    <select id="selectByUserId" resultType="net.jinyiyun.framework.entity.Commodity">
+        select * from commodity c,img i where i.comm_title=c.account_title and c.user_id=#{id}
+    </select>
+
+
+</mapper>

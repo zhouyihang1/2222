@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.jinyiyun.framework.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="net.jinyiyun.framework.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table users-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="ref_id" jdbcType="INTEGER" property="refId" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="longitudes" jdbcType="DECIMAL" property="longitudes" />
+    <result column="latitudes" jdbcType="DECIMAL" property="latitudes" />
+    <result column="remember_token" jdbcType="VARCHAR" property="rememberToken" />
+    <result column="wx_miniprogram_openid" jdbcType="VARCHAR" property="wxMiniprogramOpenid" />
+    <result column="wx_unionid" jdbcType="VARCHAR" property="wxUnionid" />
+    <result column="wx_app_openid" jdbcType="VARCHAR" property="wxAppOpenid" />
+    <result column="wx_offiaccount_openid" jdbcType="VARCHAR" property="wxOffiaccountOpenid" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, `password`, tel, avatar, `status`, ref_id, last_login_time, longitudes, 
+    latitudes, remember_token, wx_miniprogram_openid, wx_unionid, wx_app_openid, wx_offiaccount_openid, 
+    created_at, updated_at
+  </sql>
+</mapper>

@@ -1,0 +1,27 @@
+# 数据源配置
+spring:
+  profiles:
+    active: common,common-@profileActive@,@profileActive@ # 设置开发环境
+  mvc:
+    throw-exception-if-no-handler-found: true # 出现错误时, 直接抛出异常(便于异常统一处理，否则捕获不到404)
+  datasource:
+    hikari:
+      # 连接池名称
+      pool-name: @application.name@-app
+
+logging:
+  home: './logs/${spring.application.name}/app'  # 配置生成目录名  使用相对路径
+  config: classpath:logback-spring.xml
+
+#####################################测试环境########################################
+---
+# 应用服务 WEB 访问端口
+server:
+  port: 8081
+spring:
+  profiles: dev
+
+#####################################正式环境########################################
+---
+spring:
+  profiles: prod

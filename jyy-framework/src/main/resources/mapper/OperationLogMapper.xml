@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.jinyiyun.framework.mapper.OperationLogMapper">
+  <resultMap id="BaseResultMap" type="net.jinyiyun.framework.entity.OperationLog">
+    <!--@mbg.generated-->
+    <!--@Table operation_logs-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="operator_type" jdbcType="BOOLEAN" property="operatorType" />
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="request_type" jdbcType="VARCHAR" property="requestType" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="input" jdbcType="LONGVARCHAR" property="input" />
+    <result column="http_code" jdbcType="INTEGER" property="httpCode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="millisecond" jdbcType="INTEGER" property="millisecond" />
+    <result column="output" jdbcType="LONGVARCHAR" property="output" />
+    <result column="err_msg" jdbcType="LONGVARCHAR" property="errMsg" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, operator_type, operator_id, url, `method`, request_type, ip, `input`, http_code, 
+    `status`, millisecond, `output`, err_msg, created_at
+  </sql>
+</mapper>

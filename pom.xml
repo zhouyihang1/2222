@@ -1,0 +1,187 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.jinyiyun</groupId>
+    <artifactId>jinyiyun</artifactId>
+    <packaging>pom</packaging>
+    <!-- 父模块打包类型必须为pom -->
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>jyy-common</module>
+        <module>jyy-framework</module>
+        <module>jyy-app</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.1.RELEASE</version>
+    </parent>
+    <!--  在properties中统一控制依赖包的版本，更清晰 -->
+    <properties>
+        <application.name>jyy</application.name>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
+        <mybatis-plus.version>3.4.3</mybatis-plus.version>
+        <shiro.version>1.5.3</shiro.version>
+        <druid.version>1.1.23</druid.version>
+        <lombok.version>1.18.12</lombok.version>
+        <jwt.version>3.10.3</jwt.version>
+        <mysql-connector.version>8.0.21</mysql-connector.version>
+        <aspectj.version>1.9.6</aspectj.version>
+        <jbcrypt.version>0.4</jbcrypt.version>
+        <guava.version>29.0-jre</guava.version>
+        <aliyun-java-sdk-core.version>4.5.8</aliyun-java-sdk-core.version>
+        <aliyun-java-sdk-sts.version>3.0.2</aliyun-java-sdk-sts.version>
+        <alipay-sdk-java.version>4.10.192.ALL</alipay-sdk-java.version>
+        <hutool-all.version>5.4.3</hutool-all.version>
+        <jdom.version>1.1</jdom.version>
+        <com.alibaba.easyexcel>2.2.7</com.alibaba.easyexcel>
+        <org.apache.poi>3.17</org.apache.poi>
+    </properties>
+    <!-- 子模块可以不定义版本号 在此统一管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- springboot-web -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!--  Shiro  -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <!--  数据库连接  -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+            <!-- alibaba 数据库连接池   -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--  拦截器  -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <!--  兼容laravel的加解密  https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+            <dependency>
+                <groupId>org.mindrot</groupId>
+                <artifactId>jbcrypt</artifactId>
+                <version>${jbcrypt.version}</version>
+            </dependency>
+            <!--  jwt Token生成与解析 -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <!--  Google  Java 的类库集合的扩展项目  -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!-- 阿里云Java SDK公共部分依赖 -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+            <!-- 阿里云Java STS部分依赖 -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-sts</artifactId>
+                <version>${aliyun-java-sdk-sts.version}</version>
+            </dependency>
+            <!--  以下为自定义模块  -->
+            <!-- app模块 -->
+            <dependency>
+                <groupId>net.jinyiyun</groupId>
+                <artifactId>jyy-app</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!-- 通用工具 -->
+            <dependency>
+                <groupId>net.jinyiyun</groupId>
+                <artifactId>jyy-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!-- 核心模块 -->
+            <dependency>
+                <groupId>net.jinyiyun</groupId>
+                <artifactId>jyy-framework</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!-- 全局通用模块 -->
+    <dependencies>
+        <!--  spring 核心  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <!--  自动补充类 不需要设置 get /set 需要配合idea插件使用  -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- mybatis-plus 启动器  -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <!--  https://mvnrepository.com/artifact/cn.hutool/hutool-core  -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-crypto</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+        <!--  mysql jdbc 驱动  -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+    </dependencies>
+    <!--  仓库设置  -->
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <url>https://maven.aliyun.com/nexus/content/repositories/central</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>alimaven</id>
+            <url>https://maven.aliyun.com/nexus/content/repositories/central</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
